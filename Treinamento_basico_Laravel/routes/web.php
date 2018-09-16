@@ -15,3 +15,6 @@ Route::get('/', function () {
 //    return view('welcome');
     return "<h1>Listagem de produtos</h1>";
 });
+
+Route::get('/produtos', 'ProdutoController@lista');
+Route::get('/detalhes/produto/{id}', 'ProdutoController@detalhe');
