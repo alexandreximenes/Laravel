@@ -11,10 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-//    return view('welcome');
-    return "<h1>Listagem de produtos</h1>";
-});
+Route::get('/', 'ProdutoController@lista');
 
-Route::get('/produtos', 'ProdutoController@lista');
-Route::get('/detalhes/produto/{id}', 'ProdutoController@detalhe');
+//Route::get('/produtos', 'ProdutoController@lista');
+Route::get('/produto/detalhe/{id}', 'ProdutoController@detalhe');
+Route::get('/produto/novo', 'ProdutoController@novo');
+Route::post('/produto/adicionar', 'ProdutoController@adicionar');

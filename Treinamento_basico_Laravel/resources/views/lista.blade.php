@@ -14,18 +14,25 @@
 
             @foreach ($produtos as $p)
 
-            <tr>
+            <tr class="{{ $p->quantidade <=1 ? 'p-3 mb-2 bg-danger text-white': ''}}">
                 <td>{{$p->nome }} </td>
                 <td>{{$p->valor}}  </td>
                 <td>{{$p->descricao }} </td>
                 <td>{{$p->quantidade }}</td>
-                <td><a href="/detalhes/produto/<?= $p->id ?>"><span class="glyphicon glyphicon-search"></span> > </a></td>
+                <td><a href="/produto/detalhe/{{$p->id}}"><span class="glyphicon glyphicon-search"></span> > </a></td>
             </tr>
 
-            #endforeach
+            @endforeach
 
         </table>
 
+        <a class="btn btn-success" href="/produto/novo">Cadastrar</a>
+
+        @if(old('nome'))
+            <div class="alert alert-success">
+                Produto {{ old('nome') }} adicionado com sucesso!
+            </div>
+        @endif
     </div>
 
 @stop

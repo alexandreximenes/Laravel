@@ -19,7 +19,7 @@
                 <td>QUANTIDADE : </td><td>{{$produto->quantidade }}</td></br>
             </tr>
             <tr>
-                <td></td><td><a href="../ produtos/">listagem de produtos</a></td></br>
+                <td></td><td><a href="/">listagem de produtos</a></td></br>
             </tr>
 
         </table>
