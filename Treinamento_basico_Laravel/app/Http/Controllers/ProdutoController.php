@@ -39,20 +39,5 @@ class ProdutoController extends Controller {
 //      return view('adicionado')->with('produto', $nome);
 
         return redirect('/')->withInput();
-
-
-        //dd($nome . " - " . $valor . " - " . $quantidade . " - " . $descricao);
-
-//$nome = Request::input('nome');
-//        $valor = Request::input('valor');
-//        $quantidade = (int) Request::input('quantidade');
-//        $descricao = Request::input('descricao');
-//
-//        DB::insert('insert into produtos (nome, quantidade, descricao, valor)
-//values (?, ?, ?, ?), array($nome, $quantidade, $descricao, $valor )');
-//
-//        return redirect('/')->withInput();
-
-        /// /view('adicionado')->with('produto', $nome);
     }
 }
