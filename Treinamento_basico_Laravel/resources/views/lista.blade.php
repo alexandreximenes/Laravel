@@ -25,7 +25,10 @@
                 <td>{{$p->valor}}  </td>
                 <td>{{$p->descricao }} </td>
                 <td>{{$p->quantidade }}</td>
-                <td><a href="/produto/detalhe/{{$p->id}}"><span class="glyphicon glyphicon-search"></span> > </a></td>
+                <td>
+                    <a href="/produto/detalhe/{{$p->id}}"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> detalhe | </a>
+                    <a href="/produto/delete/{{$p->id}}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> delete </a>
+                </td>
             </tr>
 
             @endforeach

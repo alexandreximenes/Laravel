@@ -1,43 +1,50 @@
 <?php namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;
+use App\Produto;
 use Request;
 
-class ProdutoController extends Controller {
-    public function lista(){
-
-        $produtos = DB::select("select * from produtos");
-        //response->json_encode($produtos,200);
-        return view('lista')->with('produtos', $produtos);
+class ProdutoController extends Controller
+{
+    public function lista()
+    {
+        return view('lista')->with('produtos', self::all());
     }
 
-    public function detalhe(){
-        $id = (int) Request::route('id');
-        $produto = DB::select("SELECT * FROM produtos WHERE id = ?", [$id]);
-        return view('detalhes')->with('produto', $produto[0]);
+
+    public function listaJson()
+    {
+        return response()->json(self::all());
     }
 
-    public function novo(){
+    public function all()
+    {
+        return Produto::All();
+    }
+
+    public function detalhe($id)
+    {
+        $produto = Produto::find($id); //DB::select("SELECT * FROM produtos WHERE id = ?", [$id]);
+        return view('detalhes')->with('produto', $produto);
+    }
+
+    public function novo()
+    {
         return view('formulario');
     }
 
 //    public function adicionar(Request $request){
-    public function adicionar(){
-        // $_POST só pra zuar hehehehe
-        $_POST = Request::All();
-
-        $nome = $_POST['nome'];
-        $valor = $_POST['valor'];
-        $quantidade = $_POST['quantidade'];
-        $descricao = $_POST['descricao'];
-
-//        dd('insert into produtos (nome, quantidade, descricao, valor) values (?,?,?,?), array($nome, $valor, $quantidade, $descricao)');
-
-//      DB::insert('insert into produtos (nome, quantidade, descricao, valor) values (?,?,?,?)', [$nome, $valor, $quantidade, $descricao]);
-        DB::insert('insert into produtos (nome, quantidade, descricao, valor) values (?,?,?,?)', array($nome, $valor, $quantidade, $descricao));
-
-//      return view('adicionado')->with('produto', $nome);
-
+    public function adicionar()
+    {
+        $produto = Request::All();
+        Produto::create($produto);
         return redirect('/')->withInput();
+
+    }
+
+    public function delete($id){
+//        $id = Request::route('id');
+        $produto = Produto::find($id);
+        $produto->delete();
+        return redirect()->action('ProdutoController@lista') ;
     }
 }
