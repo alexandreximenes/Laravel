@@ -7,7 +7,7 @@ class ProdutoController extends Controller {
     public function lista(){
 
         $produtos = DB::select("select * from produtos");
-
+        //response->json_encode($produtos,200);
         return view('lista')->with('produtos', $produtos);
     }
 
@@ -21,16 +21,37 @@ class ProdutoController extends Controller {
         return view('formulario');
     }
 
+//    public function adicionar(Request $request){
     public function adicionar(){
-        $nome = Request::input('nome');
-        $valor = Request::input('valor');
-        $quantidade = (int) Request::input('quantidade');
-        $descricao = Request::input('descricao');
+        // $_POST só pra zuar hehehehe
+        $_POST = Request::All();
 
-        DB::insert('insert into produtos (nome, quantidade, descricao, valor) 
-values (?, ?, ?, ?), array($nome, $quantidade, $descricao, $valor )');
+        $nome = $_POST['nome'];
+        $valor = $_POST['valor'];
+        $quantidade = $_POST['quantidade'];
+        $descricao = $_POST['descricao'];
+
+//        dd('insert into produtos (nome, quantidade, descricao, valor) values (?,?,?,?), array($nome, $valor, $quantidade, $descricao)');
+
+//      DB::insert('insert into produtos (nome, quantidade, descricao, valor) values (?,?,?,?)', [$nome, $valor, $quantidade, $descricao]);
+        DB::insert('insert into produtos (nome, quantidade, descricao, valor) values (?,?,?,?)', array($nome, $valor, $quantidade, $descricao));
+
+//      return view('adicionado')->with('produto', $nome);
 
         return redirect('/')->withInput();
+
+
+        //dd($nome . " - " . $valor . " - " . $quantidade . " - " . $descricao);
+
+//$nome = Request::input('nome');
+//        $valor = Request::input('valor');
+//        $quantidade = (int) Request::input('quantidade');
+//        $descricao = Request::input('descricao');
+//
+//        DB::insert('insert into produtos (nome, quantidade, descricao, valor)
+//values (?, ?, ?, ?), array($nome, $quantidade, $descricao, $valor )');
+//
+//        return redirect('/')->withInput();
 
         /// /view('adicionado')->with('produto', $nome);
     }

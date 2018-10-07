@@ -3,6 +3,12 @@
 @section('conteudo')
     <div class="container">
         <h1>Listagem de produtos</h1>
+        <br/>
+        @if(old('nome'))
+            <div class="alert alert-success">
+                {{ old('nome') }} adicionado com sucesso!
+            </div>
+        @endif
 
         <table class="table">
 
@@ -28,11 +34,6 @@
 
         <a class="btn btn-success" href="/produto/novo">Cadastrar</a>
 
-        @if(old('nome'))
-            <div class="alert alert-success">
-                Produto {{ old('nome') }} adicionado com sucesso!
-            </div>
-        @endif
     </div>
 
 @stop

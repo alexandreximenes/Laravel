@@ -5,7 +5,7 @@
         <h1>Novo produto</h1>
 
         <table class="table">
-            <form method="post" action="/produto/adicionar" class="form-group">
+            <form method="POST" action="/produto/adicionar" class="form-group">
                 <input type="hidden" value="{{ csrf_token() }}" name="_token">
                 <tr>
                     <td></td><td><a href="/">listagem de produtos</a></td></br>
