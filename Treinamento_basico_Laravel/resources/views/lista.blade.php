@@ -16,6 +16,7 @@
             <th>VALOR</th>
             <th>DESCRICAO</th>
             <th>QUANTIDADE</th>
+            <th>TAMANHO</th>
             <th>AÇÃO</th>
 
             @foreach ($produtos as $p)
@@ -25,6 +26,7 @@
                 <td>{{$p->valor}}  </td>
                 <td>{{$p->descricao }} </td>
                 <td>{{$p->quantidade }}</td>
+                <td>{{$p->tamanho }}</td>
                 <td>
                     <a href="/produto/detalhe/{{$p->id}}"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> detalhe | </a>
                     <a href="/produto/delete/{{$p->id}}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> delete </a>
