@@ -20,3 +20,13 @@ Route::get('/produto/detalhe/json/{id}', 'ProdutoController@detalheJson');
 Route::get('/produto/novo', 'ProdutoController@novo');
 Route::post('/produto/adicionar', 'ProdutoController@adicionar');
 Route::get('/produto/delete/{id}', 'ProdutoController@delete');
+
+Route::get('/form-login', 'LoginController@form');
+Route::post('login', 'LoginController@login');
+
+ Route::get('/home', 'HomeController@index');
+
+// Route::controllers([
+//     'auth' => 'Auth\AuthController',
+//     'password' => 'Auth\PasswordController'
+// ]);
