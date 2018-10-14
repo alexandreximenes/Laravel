@@ -49,20 +49,10 @@ class ProdutoController extends Controller
         return view('formulario');
     }
 
-    public function adicionar()
+    public function adicionar(ProdutoRequest $request)
     {
-        $validator = Validator::make(
-            ['nome' => Request::input('nome')],
-            ['nome' => 'required|min:3']
-        );
-
-        if($validator->fails()){
-            return redirect('/produto/novo');
-        }
-//        $produto = $request->all();
-        Produto::create( Request::all());
+        Produto::create( $request->all());
         return redirect('/')->withInput();
-
     }
 
     public function delete($id){

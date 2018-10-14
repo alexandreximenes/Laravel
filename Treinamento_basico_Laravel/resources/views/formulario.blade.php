@@ -1,6 +1,17 @@
 @extends('principal')
 
 @section('conteudo')
+
+    @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <div class="container">
 
         @if (count($errors) > 0)
@@ -34,7 +45,15 @@
                 <tr>
                     <td>QUANTIDADE : </td><td><input class="form-control" type="text" name="quantidade"></td></br>
                 </tr>
-
+                <tr>
+                    <td>TAMANHO: </td><td><input class="form-control" type="text" name="tamanho"></td></br>
+                </tr>
+                <tr>
+                    <td>COR: </td><td><input class="form-control" type="text" name="cor"></td></br>
+                </tr>
+                <tr>
+                    <td>CUSTO: </td><td><input class="form-control" type="text" name="custo"></td></br>
+                </tr>
                 <tr>
                     <td></td><td><button class="btn btn-primary" type="submit">Adicionar</button></td></br>
                 </tr>

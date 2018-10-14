@@ -27,6 +27,8 @@ class AdicionaCusto extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('custo');
+        Schema::table('produtos', function($table){
+            $table->dropColumn('custo');
+        });
     }
 }
