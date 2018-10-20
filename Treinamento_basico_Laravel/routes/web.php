@@ -24,9 +24,7 @@ Route::get('/produto/delete/{id}', 'ProdutoController@delete');
 Route::get('/form-login', 'LoginController@form');
 Route::post('login', 'LoginController@login');
 
- Route::get('/home', 'HomeController@index');
 
-// Route::controllers([
-//     'auth' => 'Auth\AuthController',
-//     'password' => 'Auth\PasswordController'
-// ]);
+//Route::get('/', function () {
+//    return view('welcome');
+//});
