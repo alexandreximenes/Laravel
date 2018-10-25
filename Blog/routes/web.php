@@ -14,3 +14,23 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::group(['prefix' => 'admin'], function () {
+
+            Route::get('/home', ['uses' => 'HomeController@index', 'as' => 'post.home']);
+            Route::get('/post/create', [ 'uses' => 'PostController@create', 'as' => 'post.create']);
+            Route::post('/post/store', [ 'uses' => 'PostController@store', 'as' => 'post.store' ]);
+
+            Route::get('/category/create', [ 'uses' => 'CategoryController@create', 'as' => 'category.create' ]);
+            Route::get('/category/index', [ 'uses' => 'CategoryController@index', 'as' => 'category.index' ]);
+            Route::post('/category/store', [ 'uses' => 'CategoryController@store', 'as' => 'category.store' ]);
+            Route::get('/category/edit/{id}', [ 'uses' => 'CategoryController@edit', 'as' => 'category.edit' ]);
+            Route::post('/category/update/{id}', [ 'uses' => 'CategoryController@update', 'as' => 'category.update' ]);
+            Route::get('/category/delete/{id}', [ 'uses' => 'CategoryController@delete', 'as' => 'category.delete' ]);
+
+        });
+ });
