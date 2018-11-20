@@ -1,16 +1,13 @@
 <?php
 
-namespace App;
+namespace App\Model;
 
-use App\Model\Category;
-use App\Model\Seller;
-use App\Model\Transaction;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected const AVAILABLE_PRODUCT = 'available';
-    protected const UNAVAILABLE_PRODUCT = 'unavailable';
+    const AVAILABLE_PRODUCT = 'available';
+    const UNAVAILABLE_PRODUCT = 'unavailable';
     protected $fillable = [
         'nome',
         'description',
