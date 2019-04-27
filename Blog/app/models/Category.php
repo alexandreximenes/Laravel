@@ -10,7 +10,8 @@ class Category extends Model
       'name',
       'description'
     ];
-    public function posts(){
-        $this->hasMany('App\Post');
+
+    public function products(){
+        return $this->belongsToMany(Product::class);
     }
 }
