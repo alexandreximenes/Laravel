@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Response;
+use App\HttpStatus;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -17,7 +17,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        return response()->json(['data' => $users ], 200);
+        return response()->json(['data' => $users ], HttpStatus::OK);
     }
 
     /**
@@ -49,7 +49,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        return response()->json(["data" => $user], HttpStatus::OK);
     }
 
     /**
