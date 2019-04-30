@@ -1,4 +1,4 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p> 
 
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
@@ -63,3 +63,106 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## create resources
+### ex route
+Route::resource('buyers', "Buyer\BuyerController", ['only' => ['index', 'show']]);
+
+Listando todas as rotas
+
+php artisan route:list
+
+## Relationships
+
+##### https://laravel.com/docs/5.8/eloquent-relationships
+
+##### 1:1 hasOne
+
+<code>
+class User extends Model
+{
+
+    public function phone()
+    {
+        return $this->hasOne('App\Phone');
+    }
+}
+ </code>
+ 
+ ### Inverso do relacionamento
+ ##### 1:1 belongsTo
+ 
+ <code>
+class Phone extends Model
+{
+
+    public function user()
+    
+    {
+        return $this->belongsTo('App\User');
+    }
+}
+  </code>
+  
+   ### Um para muitos
+   ##### 1:* hasMany
+   
+   <code>
+ class Post extends Model
+ {
+  
+     public function comments()
+     {
+         return $this->hasMany('App\Comment');
+     }
+ }
+    </code>
+    
+    </code>
+  
+   ### muitos para Um (inverso)
+   ##### *:1 belongsTo
+   
+   <code>
+ class Post extends Model
+ {
+  
+     public function comments()
+     {
+         return $this->hasMany('App\Comment');
+     }
+ }
+    </code>  
+    
+    
+    ### muitos para muitos
+   ##### *:* belongsToMany
+   
+   <code>
+ class User extends Model
+{
+
+    public function roles()
+    {
+        return $this->belongsToMany('App\Role');
+    }
+}
+    </code>    
+    
+    
+    ### muitos para muitos (inverso)
+   ##### *:* belongsToMany
+   
+   <code>
+class Role extends Model
+{
+
+    public function users()
+    {
+        return $this->belongsToMany('App\User');
+    }
+}
+    </code>
+  
+  
+ 
