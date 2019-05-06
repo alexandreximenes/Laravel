@@ -19,7 +19,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Transaction::class, function (Faker $faker) {
 
-    $seller = Seller::has('products')->get()->random();
+    $seller = Seller::has('product')->get()->random();
     $buyer = User::all()->except($seller->id)->random();
     return [
         'quantity' => $faker->numberBetween(1,3),

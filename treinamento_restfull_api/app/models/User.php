@@ -52,4 +52,17 @@ class User extends Authenticatable
     public static function genetateVerificatinCode(){
         return str_random(40);
     }
+
+    public function setNameAttribute($name){
+        $this->attributes['name'] = $name;
+    }
+
+    public function getNameAttribute(){
+        return ucwords($name);
+    }
+
+    public function seEmailAttribute($email){
+        $this->attributes['email'] = strtolower($email);
+    }
+
 }
