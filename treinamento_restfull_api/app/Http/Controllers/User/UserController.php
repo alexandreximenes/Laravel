@@ -17,7 +17,7 @@ class UserController extends ApiController
     public function index()
     {
         $users = User::all();
-        return response()->json(['data' => $users ], 200);
+        return $this->showAll($users, 200);
     }
 
     /**
@@ -54,8 +54,7 @@ class UserController extends ApiController
 
         $user = User::create($data);
 
-           return response()->json(["data" => $user], 201);
-
+        return $this->showOne($user, 201);
 
     }
 
@@ -68,8 +67,7 @@ class UserController extends ApiController
     public function show($id)
     {
         $user = User::findOrFail($id);
-
-        return response()->json(["data" => $user], 200);
+        return $this->showOne($user, 200);
     }
 
     /**
@@ -120,18 +118,18 @@ class UserController extends ApiController
 
         if($request->has('admin')):
             if(!$user->isVerified()) :
-                return response()->json(['error' => "Only verified users can modify the admin field", 'code' => 409], 409);
+                return $this->errorResponde("Only verified users can modify the admin field", 409);
             endif;
 
             $user->admin = $request->admin;
         endif;
 
         if(!$user->isDirty()):
-            return response()->json(['error' => "You need to specify a differente value to update", 'code' => 422], 422);
+            return $this->errorResponde("You need to specify a differente value to update", 422);
         endif;
 
         $user->save();
-        return response()->json(['data' => $user], 200);
+        return $this->showOne($user, 200);
     }
 
     /**
@@ -146,9 +144,9 @@ class UserController extends ApiController
 
         if(!is_null($user)):
             $user->delete();
-            return response()->json(['data' => $user], 200);
+            return $this->showOne($user, 200);
         else:
-            return response()->json(['error' => "User not found", 'code' => 404], 404);
+            return $this->errorResponde("User not found", 404);
         endif;
 
     }

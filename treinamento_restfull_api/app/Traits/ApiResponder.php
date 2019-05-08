@@ -20,7 +20,7 @@ trait ApiResponder
         return $this->successResponde(['data' => $collection], $code);
     }
 
-    private function showOne(Model $model, $code){
+    protected function showOne(Model $model, $code){
         return $this->successResponde(['data' => $model], $code);
     }
 }
