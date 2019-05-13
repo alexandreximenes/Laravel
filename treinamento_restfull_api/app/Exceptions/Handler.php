@@ -91,7 +91,13 @@ class Handler extends ExceptionHandler
                 $this->errorResponde("Cannot remove this resource permanently. It is related with any other resource", 409);
             endif;
         endif;
-        return parent::render($request, $exception);
+
+        if(config('app.debug')):
+            return parent::render($request, $exception);    
+        endif;
+
+        return errorResponse("Unexpected error internal server",500);
+        
     }
 
     protected function convertValidationExceptionToResponse(ValidationException $e, $request)
