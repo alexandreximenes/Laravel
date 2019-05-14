@@ -2,7 +2,7 @@
 
 namespace App\Exceptions;
 
-use Api\Traits\ApiResponder;
+use App\Traits\ApiResponder;
 use Exception;
 use Http\Client\Exception\HttpException;
 use Illuminate\Auth\Access\AuthorizationException;

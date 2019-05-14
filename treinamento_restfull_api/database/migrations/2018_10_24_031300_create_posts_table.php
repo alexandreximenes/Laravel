@@ -20,6 +20,7 @@ class CreatePostsTable extends Migration
             $table->integer('categoria_id');
             $table->string('featured');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
