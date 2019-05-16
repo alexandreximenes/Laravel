@@ -8,8 +8,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
-    use SoftDeletes;
+    use Notifiable, SoftDeletes;
+
+    protected $dates = ['deleted_at'];
 
     const VERIFIED_USER = '1';
     const UNVERIFIED_USER = '0';
@@ -64,5 +65,4 @@ class User extends Authenticatable
     public function seEmailAttribute($email){
         $this->attributes['email'] = strtolower($email);
     }
-
 }
