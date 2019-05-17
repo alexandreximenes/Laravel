@@ -16,7 +16,7 @@
 //Route::middleware('auth:api')->get('/user', function (Request $request) {
 //    return $request->user();
 //});
-//Route::group(['prefix' => 'users'], function() {
+//Route::group(['prefix' => 'users'], function() {Buyer
 //    Route::get('/', 'User\UserController@index');
 //    Route::post('/', 'User\UserController@store');
 //});
