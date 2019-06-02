@@ -1,3 +1,0 @@
-create controllers
-php artisan make:controller User/UserController -r
-php artisan route:list
