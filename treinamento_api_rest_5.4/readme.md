@@ -1,3 +1,8 @@
+### Collections do Postman
+<p align="center">
+<a href="https://www.getpostman.com/collections/fee7bd7efde1625643b4">collections</b>
+</p>
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">

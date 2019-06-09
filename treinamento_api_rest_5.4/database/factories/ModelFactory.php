@@ -1,6 +1,8 @@
 <?php
 
 use App\Product;
+use App\Seller;
+use App\Transaction;
 use App\User;
 use App\Category;
 use Faker\Generator;
@@ -42,6 +44,8 @@ $factory->define(Category::class, function (Faker\Generator $faker) {
 
 $factory->define(Product::class, function (Faker\Generator $faker) {
 
+
+
     return [
         'name' => $faker->word,
         'description' => $faker->paragraph(1),
@@ -49,6 +53,18 @@ $factory->define(Product::class, function (Faker\Generator $faker) {
         'status' => $faker->randomElement([Product::AVAILABLE_PRODUTO, Product::UNAVAILABLE_PRODUTO]),
         'image' => $faker->randomElement(['1.jpeg', '2.PNG', '3.jpg']),
         'seller_id' => User::all()->random()->id, //User::inRandomOrder->first()->id
+    ];
+});
+
+$factory->define(Transaction::class, function (Faker\Generator $faker) {
+
+    $seller = Seller::has('products')->get()->random();
+    $buyer = User::all()->except($seller->id)->random();
+
+    return [
+        'quantity' => $faker->numberBetween(1,3),
+        'buyer_id' => $buyer->id,
+        'product_id' => $seller->products->random()->id,
 
     ];
 });
