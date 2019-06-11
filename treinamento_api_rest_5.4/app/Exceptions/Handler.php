@@ -70,7 +70,31 @@ class Handler extends ExceptionHandler
         if($exception instanceof AuthorizationException):
             return $this->errorResponse($exception->getMessage(), 403);
         endif;
-        return parent::render($request, $exception);
+
+         if($exception instanceof NotFoundHttpException):
+            return $this->errorResponse('The specified URL cannot be found', 404);
+        endif;
+
+        if($exception instanceof MethodNotAllowedHttpException):
+            return $this->errorResponse('The specified method for the request is invalid', 405);
+        endif;
+
+        if($exception instanceof HttpException):
+            return $this->errorResponse($exception->getMessage(), $exception->getStatusCode());
+        endif;
+
+        if($exception instanceof QueryException):
+            $erroCode = $exception->errorInfo[1];
+            if($erroCode == 1451):
+                return $this->errorResponse('Cannot remove this resource permanently. It is related with any toher resource' , 409);
+            endif;
+        endif;
+
+        if(config('app.debug')){
+            return parent::render($request, $exception);
+        }
+
+        return $this->errorResponse('Unexpected Exception. try later', 500);
     }
 
     /**
