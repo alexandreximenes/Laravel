@@ -9,6 +9,7 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
@@ -54,7 +55,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        print_r($request);
+        Log::info($request);
 
         if($exception instanceof ValidationException):
             return $this->convertValidationExceptionToResponse($exception, $request);
