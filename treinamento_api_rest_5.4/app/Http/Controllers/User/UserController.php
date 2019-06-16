@@ -110,13 +110,13 @@ class UserController extends ApiController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param User $user
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        $user = User::findOrFail($id);
-
+//        $user = User::findOrFail($id);
         $user->delete();
 
         return $this->showOne($user);
