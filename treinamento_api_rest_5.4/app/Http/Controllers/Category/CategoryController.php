@@ -23,12 +23,21 @@ class CategoryController extends ApiController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'name' => 'required|min:1',
+            'description' => 'required|min:1'
+        ];
+
+        $this->validate($request, $rules);
+
+        $newCategory = Category::create($request->all());
+
+        return $this->showOne($newCategory, 201);
     }
 
     /**
@@ -39,7 +48,7 @@ class CategoryController extends ApiController
      */
     public function show(Category $category)
     {
-        //
+        return $this->show($category);
     }
 
     /**
@@ -51,7 +60,25 @@ class CategoryController extends ApiController
      */
     public function update(Request $request, Category $category)
     {
-        //
+        /**
+         * $fieldsAccept = ['name', 'description'];
+         * $intersect = $request->intersect($fieldsAccept);
+         * $category->fill($intersect);
+         */
+
+        $category->fill($request->intersect([
+            'name',
+            'description'
+        ]));
+
+        if ($category->isClean()):
+            return $this->errorResponse("You need specified different value to update", 422);
+        endif;
+
+        $category->save();
+
+        return $this->showOne($category);
+
     }
 
     /**
